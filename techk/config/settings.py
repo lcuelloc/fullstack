@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'apps.base',
     'apps.scraper',
+    'apps.categories.apps.CategoriesConfig',
 ]
 
 MIDDLEWARE = [
