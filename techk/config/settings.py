@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.base',
     'apps.scraper',
     'apps.categories.apps.CategoriesConfig',
+    'apps.books.apps.BooksConfig',
 ]
 
 MIDDLEWARE = [
