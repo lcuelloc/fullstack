@@ -53,51 +53,50 @@ def get_page_books(page):
         thumbnail = art.img['src']
         thumb_format = base_url + thumbnail.replace('../', '')
         data.append({
-            'link': link_format,
+            'url': link_format,
             'thumbnail': thumb_format
         })
     return data
 
 
 # format book body
-def get_book_info(books):
-    data = []
-    for one in books:
-        req = requests.get(one['link'])
-        soup = BeautifulSoup(req.text, 'lxml')
-        # get categories breadcrumb
-        breadcrumb = soup.find('ul',{'class': 'breadcrumb'})
-        # get category
-        category = breadcrumb.findAll('li')[2].a.text
+def get_book_info(book):
+    print(book['url'])
+    req = requests.get(book['url'])
+    soup = BeautifulSoup(req.text, 'lxml')
+    # get categories breadcrumb
+    breadcrumb = soup.find('ul',{'class': 'breadcrumb'})
+    # get category
+    category = breadcrumb.findAll('li')[2].a.text
 
-        article = soup.find('article', {'class': 'product_page'})
-        # get title
-        title =  article.find('h1').text
-        price_string = article.find('p', {'class': 'price_color'}).text
-        # get price
-        price = price_string[2:]
-        stock_string = article.find('p', {'class': 'instock availability'}).text
-        # get stock
-        stock =  int((re.findall('\d+', stock_string ))[0])
-        # get description
-        desc_body = article.find('p', {'class': None})
-        description = desc_body.text if desc_body else None
-        # get table
-        table = article.find('table', {'class': 'table table-striped'})
-        # get upc
-        upc = table.find('td').text
-        
-        # format body
-        body = {
-            'category': category,
-            'title': title,
-            'thumbnail': one['thumbnail'],
-            'price': price,
-            'stock': stock,
-            'product_description': description,
-            'upc': upc
-        }
+    article = soup.find('article', {'class': 'product_page'})
+    # get title
+    title =  article.find('h1').text
+    price_string = article.find('p', {'class': 'price_color'}).text
+    # get price
+    price = price_string[2:]
+    stock_string = article.find('p', {'class': 'instock availability'}).text
+    # get stock
+    stock =  int((re.findall('\d+', stock_string ))[0])
+    # get description
+    desc_body = article.find('p', {'class': None})
+    description = desc_body.text if desc_body else None
+    # get table
+    table = article.find('table', {'class': 'table table-striped'})
+    # get upc
+    upc = table.find('td').text
+    # format body
+    if None in [category,title,price,stock,upc]:
+        return {}
 
-        data.append(body)
+    body = {
+        'category': category,
+        'title': title,
+        'thumbnail_url': book['thumbnail'],
+        'price': price,
+        'stock': stock,
+        'product_description': description,
+        'upc': upc
+    }
 
-    return data
+    return body
