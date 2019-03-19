@@ -67,6 +67,14 @@ class GenerateScrapeView(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST
                 )
 
+        created_books = list(Book.objects.values_list('title', flat=True))
+        all_links = [scrape for scrape in all_links if scrape['title'] not in created_books]
+
+        if len(all_links) == 0:
+            return Response(
+                {"message": "No new books found to scrape"},
+                status=status.HTTP_200_OK
+                )
 
         books_count = 0
         for data in all_links:

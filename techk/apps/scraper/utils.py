@@ -52,9 +52,11 @@ def get_page_books(page):
         link_format = base_url + 'catalogue/' + link
         thumbnail = art.img['src']
         thumb_format = base_url + thumbnail.replace('../', '')
+        title = art.h3.a['title']
         data.append({
             'url': link_format,
-            'thumbnail': thumb_format
+            'thumbnail': thumb_format,
+            'title': title
         })
     return data
 
