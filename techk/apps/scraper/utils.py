@@ -61,7 +61,7 @@ def get_page_books(page):
 
 # format book body
 def get_book_info(book):
-    print(book['url'])
+    # get book info
     req = requests.get(book['url'])
     soup = BeautifulSoup(req.text, 'lxml')
     # get categories breadcrumb

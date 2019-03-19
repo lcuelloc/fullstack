@@ -70,11 +70,9 @@ class GenerateScrapeView(views.APIView):
 
         books_count = 0
         for data in all_links:
-            print(data)
             # get single book info
             one_book = get_book_info(data)
             if bool(one_book):
-                print("creating books")
                 # get category
                 book_category = categories_collection.get(slugify(one_book['category']))
                 # create new book
