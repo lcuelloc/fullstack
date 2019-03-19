@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^$', index),
     url(r'api-auth/', include('rest_framework.urls')),
     url(r'api/', include('apps.scraper.urls')),
-    url(r'api/', include('apps.categories.urls'))
+    url(r'api/', include('apps.categories.urls')),
+    url(r'api/', include('apps.books.urls')),
 ]
