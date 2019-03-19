@@ -21,7 +21,7 @@ class Book(models.Model):
     product_description = models.TextField(blank=True, null=True)
 
     class Meta:
-        ordering = ["-id"]
+        ordering = ["title"]
         get_latest_by = "upc"
 
     def __str__(self):
