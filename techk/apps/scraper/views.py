@@ -100,6 +100,6 @@ class GenerateScrapeView(views.APIView):
                     books_count +=1
         
         return Response({
-            'message': f"categories created: {categories_count}, Books created: {books_count}",
-            status=status.HTTP_200_OK})
+            'message': f"categories created: {categories_count}, Books created: {books_count}"},
+            status=status.HTTP_200_OK)
 
