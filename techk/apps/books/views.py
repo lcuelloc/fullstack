@@ -29,7 +29,7 @@ class BookView(
     authentication_classes = []
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filter_fields = ['category', 'upc', 'title', 'price', 'stock']
-    pagination_class = NumPagesPagination
+    # pagination_class = NumPagesPagination
 
     @action(methods=["post"], detail=False, permission_classes=[])
     def bulk_delete(self, request, pk=None):

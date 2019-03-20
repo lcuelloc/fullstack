@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block main %}
+<div class="container" style="margin: 20px 20px;">
+    <div class="row">
+        <button class="btn btn-success" id="button_scrape">Iniciar Scrape</button>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3" id='categories'></div>
+        
+        <div class="col-md-9" id="books">
+            <!-- Tabla     -->
+            <h1>Libros</h1>
+            <div class="form-group">
+                <input type="text" id="filterTable" class="form-control" placeholder="Filtar tabla...">
+            </div>> 
+            <table class="table table-hover" id="myTable">
+                <thead>
+                    <th>Imagen</th>
+                    <th>UPC</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script type='text/javascript' src="{% static 'main.js' %}"></script>
+{% endblock %}

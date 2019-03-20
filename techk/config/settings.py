@@ -76,7 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
+# print(os.path.join(BASE_DIR, "/apps/static"))
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -135,6 +135,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # DJANGO CORS HEADERS CONFIG
 # -------------------------------------------------------------------------------------------------
